@@ -65,19 +65,9 @@ def A(k: Long, t: Long): Long = {
 	def subTail(i: Long, ans: Long): Long = i match {
 		case a if a < 0 => ans
 		case _ => {
-//			println("=================" + i.toString)
-//			val part1x = choose(k, i, mod)
-//			val part2x = choose(k-i, (k-i)/2L, mod)
-//			val part3x = powMod(2L, i*t, mod)
 			val part1 = chooseKI(i.toInt)
 			val part2 = chooseNHalfN(((k-i)/2L).toInt)
 			val part3 = powerOfTwo(i.toInt)
-//			println(part1)
-//			println(part1x)
-//			println(part2)
-//			println(part2x)
-//			println(part3)
-//			println(part3x)
 			val cur1 = (part1 * part2) % mod
 			val cur = (cur1 * part3) % mod
 			subTail(i-2, (ans + cur) % mod)
@@ -86,6 +76,4 @@ def A(k: Long, t: Long): Long = {
 	subTail(k, 0)
 }
 
-
-//print(choose(200000000,100000000,1000000007))
 print(A(k, t))
